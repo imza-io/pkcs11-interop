@@ -146,7 +146,23 @@ namespace Net.Pkcs11Interop.Common
             if (structureType == null)
                 throw new ArgumentNullException("structureType");
 
-            // Legacy, non-generic marshaling. Prefer SizeOf<T>() where possible.
+            // Fast path for primitive/blittable types to avoid RuntimeInteropData lookups in AOT
+            if (structureType == typeof(byte)) return sizeof(byte);
+            if (structureType == typeof(sbyte)) return sizeof(sbyte);
+            if (structureType == typeof(short)) return sizeof(short);
+            if (structureType == typeof(ushort)) return sizeof(ushort);
+            if (structureType == typeof(int)) return sizeof(int);
+            if (structureType == typeof(uint)) return sizeof(uint);
+            if (structureType == typeof(long)) return sizeof(long);
+            if (structureType == typeof(ulong)) return sizeof(ulong);
+            if (structureType == typeof(float)) return sizeof(float);
+            if (structureType == typeof(double)) return sizeof(double);
+            if (structureType == typeof(char)) return sizeof(char);
+            if (structureType == typeof(bool)) return sizeof(bool);
+            if (structureType == typeof(IntPtr)) return IntPtr.Size;
+            if (structureType == typeof(UIntPtr)) return IntPtr.Size;
+
+            // Legacy, non-generic marshaling for other structs. Prefer SizeOf<T>() where possible.
             #pragma warning disable IL3050
             return Marshal.SizeOf(structureType);
             #pragma warning restore IL3050

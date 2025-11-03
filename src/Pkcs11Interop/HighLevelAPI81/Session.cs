@@ -621,7 +621,7 @@ namespace Net.Pkcs11Interop.HighLevelAPI81
                     if ((NativeLong)template[i].valueLen == -1)
                         continue;
 
-                    int ckAttributeSize = UnmanagedMemory.SizeOf(typeof(CK_ATTRIBUTE));
+                    int ckAttributeSize = UnmanagedMemory.SizeOf<CK_ATTRIBUTE>();
                     int nestedAttrCount = ConvertUtils.UInt64ToInt32(template[i].valueLen) / ckAttributeSize;
                     int nestedAttrCountMod = ConvertUtils.UInt64ToInt32(template[i].valueLen) % ckAttributeSize;
 

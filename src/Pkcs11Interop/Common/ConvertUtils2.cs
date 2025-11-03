@@ -791,7 +791,7 @@ namespace Net.Pkcs11Interop.Common
         /// <returns>UInt32 with value from byte array</returns>
         public static UInt32 UInt32FromBytes(byte[] value)
         {
-            if ((value == null) || (value.Length != UnmanagedMemory.SizeOf(typeof(UInt32))))
+            if ((value == null) || (value.Length != UnmanagedMemory.SizeOf<uint>()))
                 throw new Exception("Unable to convert bytes to UInt32");
 
             return BitConverter.ToUInt32(value, 0);
@@ -804,7 +804,7 @@ namespace Net.Pkcs11Interop.Common
         /// <returns>UInt64 with value from byte array</returns>
         public static UInt64 UInt64FromBytes(byte[] value)
         {
-            if ((value == null) || (value.Length != UnmanagedMemory.SizeOf(typeof(UInt64))))
+            if ((value == null) || (value.Length != UnmanagedMemory.SizeOf<UInt64>()))
                 throw new Exception("Unable to convert bytes to UInt64");
 
             return BitConverter.ToUInt64(value, 0);
@@ -819,7 +819,7 @@ namespace Net.Pkcs11Interop.Common
         {
             byte[] bytes = BitConverter.GetBytes(value);
 
-            int unmanagedSize = Common.UnmanagedMemory.SizeOf(typeof(UInt32));
+            int unmanagedSize = Common.UnmanagedMemory.SizeOf<uint>();
             if (unmanagedSize != bytes.Length)
                 throw new Exception(string.Format("Unmanaged size of UInt32 ({0}) does not match the length of produced byte array ({1})", unmanagedSize, bytes.Length));
 
@@ -835,7 +835,7 @@ namespace Net.Pkcs11Interop.Common
         {
             byte[] bytes = BitConverter.GetBytes(value);
 
-            int unmanagedSize = Common.UnmanagedMemory.SizeOf(typeof(UInt64));
+            int unmanagedSize = Common.UnmanagedMemory.SizeOf<UInt64>();
             if (unmanagedSize != bytes.Length)
                 throw new Exception(string.Format("Unmanaged size of UInt64 ({0}) does not match the length of produced byte array ({1})", unmanagedSize, bytes.Length));
 

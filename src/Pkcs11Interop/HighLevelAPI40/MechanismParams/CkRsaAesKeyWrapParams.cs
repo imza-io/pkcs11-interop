@@ -67,7 +67,7 @@ namespace Net.Pkcs11Interop.HighLevelAPI40.MechanismParams
 
             _lowLevelStruct.AESKeyBits = aesKeyBits;
 
-            _lowLevelStruct.OAEPParams = UnmanagedMemory.Allocate(UnmanagedMemory.SizeOf(typeof(CK_RSA_PKCS_OAEP_PARAMS)));
+            _lowLevelStruct.OAEPParams = UnmanagedMemory.Allocate(UnmanagedMemory.SizeOf<CK_RSA_PKCS_OAEP_PARAMS>());
             UnmanagedMemory.Write(_lowLevelStruct.OAEPParams, oaepParams.ToMarshalableStructure());
         }
 

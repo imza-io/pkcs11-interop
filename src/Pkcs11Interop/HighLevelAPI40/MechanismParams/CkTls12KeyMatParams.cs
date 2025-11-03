@@ -106,7 +106,7 @@ namespace Net.Pkcs11Interop.HighLevelAPI40.MechanismParams
             _lowLevelStruct.RandomInfo = (CK_SSL3_RANDOM_DATA)_randomInfo.ToMarshalableStructure();
 
             // Abrakadabra :)
-            _lowLevelStruct.ReturnedKeyMaterial = UnmanagedMemory.Allocate(UnmanagedMemory.SizeOf(typeof(CK_SSL3_KEY_MAT_OUT)));
+            _lowLevelStruct.ReturnedKeyMaterial = UnmanagedMemory.Allocate(UnmanagedMemory.SizeOf<CK_SSL3_KEY_MAT_OUT>());
             UnmanagedMemory.Write(_lowLevelStruct.ReturnedKeyMaterial, _returnedKeyMaterial._lowLevelStruct);
 
             _lowLevelStruct.PrfHashMechanism = prfHashMechanism;

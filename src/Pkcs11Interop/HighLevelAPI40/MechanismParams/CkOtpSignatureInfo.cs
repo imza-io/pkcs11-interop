@@ -108,7 +108,7 @@ namespace Net.Pkcs11Interop.HighLevelAPI40.MechanismParams
             }
 
             // Read all CK_OTP_PARAMs from CK_OTP_SIGNATURE_INFO
-            int ckOtpParamSize = UnmanagedMemory.SizeOf(typeof(CK_OTP_PARAM));
+            int ckOtpParamSize = UnmanagedMemory.SizeOf<CK_OTP_PARAM>();
             for (int i = 0; i < ConvertUtils.UInt32ToInt32(_lowLevelStruct.Count); i++)
             {
                 // Read CK_OTP_PARAM from CK_OTP_SIGNATURE_INFO

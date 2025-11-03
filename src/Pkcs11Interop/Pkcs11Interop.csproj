@@ -1,13 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-    <TargetFrameworks>net20;net40;net45;netstandard2.0</TargetFrameworks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
-  </PropertyGroup>
-
   <PropertyGroup>
     <Version>5.3.0</Version>
     <Authors>Jaroslav Imrich</Authors>
@@ -30,7 +21,10 @@
     <IsTrimmable>true</IsTrimmable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
-
+	<PropertyGroup>
+		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+		<TrimMode>link</TrimMode>
+	</PropertyGroup>
   <ItemGroup Label="PackExtraContent">
     <None Include="LICENSE.txt" pack="true" PackagePath="." />
     <None Include="NOTICE.txt" pack="true" PackagePath="." />

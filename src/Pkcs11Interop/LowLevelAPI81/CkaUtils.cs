@@ -339,7 +339,7 @@ namespace Net.Pkcs11Interop.LowLevelAPI81
             attribute.type = type;
             if ((value != null) && (value.Length > 0))
             {
-                int ckAttributeSize = UnmanagedMemory.SizeOf(typeof(CK_ATTRIBUTE));
+                int ckAttributeSize = UnmanagedMemory.SizeOf<CK_ATTRIBUTE>();
                 attribute.value = UnmanagedMemory.Allocate(ckAttributeSize * value.Length);
                 for (int i = 0; i < value.Length; i++)
                 {
@@ -364,7 +364,7 @@ namespace Net.Pkcs11Interop.LowLevelAPI81
         /// <param name="value">Location that receives attribute value</param>
         public static void ConvertValue(ref CK_ATTRIBUTE attribute, out CK_ATTRIBUTE[] value)
         {
-            int ckAttributeSize = UnmanagedMemory.SizeOf(typeof(CK_ATTRIBUTE));
+            int ckAttributeSize = UnmanagedMemory.SizeOf<CK_ATTRIBUTE>();
             int attrCount = ConvertUtils.UInt64ToInt32(attribute.valueLen) / ckAttributeSize;
             int attrCountMod = ConvertUtils.UInt64ToInt32(attribute.valueLen) % ckAttributeSize;
 
@@ -416,7 +416,7 @@ namespace Net.Pkcs11Interop.LowLevelAPI81
             attribute.type = type;
             if ((value != null) && (value.Length > 0))
             {
-                int ckmSize = UnmanagedMemory.SizeOf(typeof(NativeULong));
+                int ckmSize = UnmanagedMemory.SizeOf<NativeULong>();
                 attribute.value = UnmanagedMemory.Allocate(ckmSize * value.Length);
                 for (int i = 0; i < value.Length; i++)
                 {
@@ -441,7 +441,7 @@ namespace Net.Pkcs11Interop.LowLevelAPI81
         /// <param name="value">Location that receives attribute value</param>
         public static void ConvertValue(ref CK_ATTRIBUTE attribute, out NativeULong[] value)
         {
-            int ckmSize = UnmanagedMemory.SizeOf(typeof(NativeULong));
+            int ckmSize = UnmanagedMemory.SizeOf<NativeULong>();
             int attrCount = ConvertUtils.UInt64ToInt32(attribute.valueLen) / ckmSize;
             int attrCountMod = ConvertUtils.UInt64ToInt32(attribute.valueLen) % ckmSize;
             

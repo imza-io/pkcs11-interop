@@ -91,7 +91,7 @@ namespace Net.Pkcs11Interop.HighLevelAPI41.MechanismParams
                 UnmanagedMemory.Write(_lowLevelStruct.Password, password);
 
                 NativeULong passwordLength = ConvertUtils.UInt32FromInt32(password.Length);
-                _lowLevelStruct.PasswordLen = UnmanagedMemory.Allocate(UnmanagedMemory.SizeOf(typeof(NativeULong)));
+                _lowLevelStruct.PasswordLen = UnmanagedMemory.Allocate(UnmanagedMemory.SizeOf<NativeULong>());
                 UnmanagedMemory.Write(_lowLevelStruct.PasswordLen, BitConverter.GetBytes(passwordLength));
             }
         }

@@ -54,7 +54,7 @@ namespace Net.Pkcs11Interop.HighLevelAPI81.MechanismParams
                 if (this._disposed)
                     throw new ObjectDisposedException(this.GetType().FullName);
 
-                int nativeULongSize = UnmanagedMemory.SizeOf(typeof(NativeULong));
+                int nativeULongSize = UnmanagedMemory.SizeOf<NativeULong>();
                 byte[] outputLenBytes = UnmanagedMemory.Read(_lowLevelStruct.OutputLen, nativeULongSize);
                 NativeULong outputLen = ConvertUtils.UInt64FromBytes(outputLenBytes);
                 return UnmanagedMemory.Read(_lowLevelStruct.Output, ConvertUtils.UInt64ToInt32(outputLen));

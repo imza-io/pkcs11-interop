@@ -87,7 +87,7 @@ namespace Net.Pkcs11Interop.HighLevelAPI41.MechanismParams
             _randomInfo = randomInfo;
 
             _lowLevelStruct.RandomInfo = (CK_SSL3_RANDOM_DATA)_randomInfo.ToMarshalableStructure();
-            _lowLevelStruct.Version = UnmanagedMemory.Allocate(UnmanagedMemory.SizeOf(typeof(CK_VERSION)));
+            _lowLevelStruct.Version = UnmanagedMemory.Allocate(UnmanagedMemory.SizeOf<CK_VERSION>());
             _lowLevelStruct.PrfHashMechanism = prfHashMechanism;
         }
 

@@ -26,6 +26,7 @@
     <Deterministic>true</Deterministic>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <TargetFrameworks>net10.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup Label="PackExtraContent">
@@ -43,6 +44,14 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Pkcs11Interop.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0|AnyCPU'">
+    <IsAotCompatible>True</IsAotCompatible>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0|AnyCPU'">
+    <IsAotCompatible>True</IsAotCompatible>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(OS)' == 'Windows_NT'">

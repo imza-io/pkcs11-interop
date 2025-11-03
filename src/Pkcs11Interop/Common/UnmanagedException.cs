@@ -76,6 +76,7 @@ namespace Net.Pkcs11Interop.Common
         /// </summary>
         /// <param name="info">SerializationInfo that holds the serialized object data about the exception being thrown</param>
         /// <param name="context">StreamingContext that contains contextual information about the source or destination</param>
+        [Obsolete]
         protected UnmanagedException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
@@ -93,6 +94,7 @@ namespace Net.Pkcs11Interop.Common
         /// </summary>
         /// <param name="info">SerializationInfo to populate with data</param>
         /// <param name="context">The destination for this serialization</param>
+        [Obsolete]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)

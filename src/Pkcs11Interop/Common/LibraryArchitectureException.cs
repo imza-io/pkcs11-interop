@@ -77,6 +77,7 @@ namespace Net.Pkcs11Interop.Common
         /// </summary>
         /// <param name="info">SerializationInfo that holds the serialized object data about the exception being thrown</param>
         /// <param name="context">StreamingContext that contains contextual information about the source or destination</param>
+        [Obsolete]
         protected LibraryArchitectureException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {

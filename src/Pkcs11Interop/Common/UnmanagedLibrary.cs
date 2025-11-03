@@ -181,9 +181,9 @@ namespace Net.Pkcs11Interop.Common
         /// <typeparam name="T">Type of delegate</typeparam>
         /// <param name="functionPointer">Function pointer</param>
         /// <returns>Delegate</returns>
-        public static T GetDelegateForFunctionPointer<T>(IntPtr functionPointer)
+        public static T GetDelegateForFunctionPointer<T>(IntPtr functionPointer) where T : Delegate
         {
-            return (T)(object)Marshal.GetDelegateForFunctionPointer(functionPointer, typeof(T));
+            return Marshal.GetDelegateForFunctionPointer<T>(functionPointer);
         }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace Net.Pkcs11Interop.Common
         /// <param name="libraryHandle">Dynamic library handle</param>
         /// <param name="function">Function name</param>
         /// <returns>Delegate for specified unmanaged function</returns>
-        public static T GetFunctionDelegate<T>(IntPtr libraryHandle, string function)
+        public static T GetFunctionDelegate<T>(IntPtr libraryHandle, string function) where T : Delegate
         {
             IntPtr functionPtr = GetFunctionPointer(libraryHandle, function);
             return GetDelegateForFunctionPointer<T>(functionPtr);

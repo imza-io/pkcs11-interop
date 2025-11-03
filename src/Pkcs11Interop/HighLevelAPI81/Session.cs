@@ -640,7 +640,7 @@ namespace Net.Pkcs11Interop.HighLevelAPI81
                         for (int j = 0; j < nestedAttrCount; j++)
                         {
                             IntPtr tempPointer = new IntPtr(template[i].value.ToInt64() + (j * ckAttributeSize));
-                            CK_ATTRIBUTE tempAttribute = (CK_ATTRIBUTE)UnmanagedMemory.Read(tempPointer, typeof(CK_ATTRIBUTE));
+                            CK_ATTRIBUTE tempAttribute = UnmanagedMemory.Read<CK_ATTRIBUTE>(tempPointer);
 
                             if ((NativeLong)tempAttribute.valueLen != -1)
                                 tempAttribute.value = Common.UnmanagedMemory.Allocate(ConvertUtils.UInt64ToInt32(tempAttribute.valueLen));

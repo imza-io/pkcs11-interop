@@ -146,7 +146,19 @@ namespace Net.Pkcs11Interop.Common
             if (structureType == null)
                 throw new ArgumentNullException("structureType");
 
+            // Legacy, non-generic marshaling. Prefer SizeOf<T>() where possible.
+            #pragma warning disable IL3050
             return Marshal.SizeOf(structureType);
+            #pragma warning restore IL3050
+        }
+
+        /// <summary>
+        /// Returns the unmanaged size of the structure in bytes (AOT-friendly)
+        /// </summary>
+        /// <typeparam name="T">Structure type</typeparam>
+        public static int SizeOf<T>() where T : struct
+        {
+            return Marshal.SizeOf<T>();
         }
 
         /// <summary>
@@ -177,6 +189,20 @@ namespace Net.Pkcs11Interop.Common
 
             if (structure == null)
                 throw new ArgumentNullException("structure");
+
+            // Legacy, non-generic marshaling. Prefer Write<T>(...) where possible.
+            #pragma warning disable IL3050
+            Marshal.StructureToPtr(structure, memory, false);
+            #pragma warning restore IL3050
+        }
+
+        /// <summary>
+        /// Copies content of structure to unmanaged memory (AOT-friendly)
+        /// </summary>
+        public static void Write<T>(IntPtr memory, in T structure) where T : struct
+        {
+            if (memory == IntPtr.Zero)
+                throw new ArgumentNullException("memory");
 
             Marshal.StructureToPtr(structure, memory, false);
         }
@@ -214,7 +240,23 @@ namespace Net.Pkcs11Interop.Common
             if (structureType == null)
                 throw new ArgumentNullException("structureType");
 
+            // Legacy, non-generic marshaling. Prefer Read<T>(...) where possible.
+            #pragma warning disable IL3050
             return Marshal.PtrToStructure(memory, structureType);
+            #pragma warning restore IL3050
+        }
+
+        /// <summary>
+        /// Copies content of unmanaged memory to a managed structure (AOT-friendly)
+        /// </summary>
+        public static T Read<
+            [System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicConstructors | System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicConstructors)]
+            T>(IntPtr memory) where T : struct
+        {
+            if (memory == IntPtr.Zero)
+                throw new ArgumentNullException("memory");
+
+            return Marshal.PtrToStructure<T>(memory);
         }
 
         /// <summary>
@@ -230,7 +272,10 @@ namespace Net.Pkcs11Interop.Common
             if (structure == null)
                 throw new ArgumentNullException("structure");
 
+            // Legacy, non-generic marshaling. Prefer Read<T>(...) + assignment.
+            #pragma warning disable IL3050
             Marshal.PtrToStructure(memory, structure);
+            #pragma warning restore IL3050
         }
     }
 }

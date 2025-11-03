@@ -382,7 +382,7 @@ namespace Net.Pkcs11Interop.LowLevelAPI40
                 for (int i = 0; i < attrCount; i++)
                 {
                     IntPtr tempPointer = new IntPtr(attribute.value.ToInt64() + (i * ckAttributeSize));
-                    attrs[i] = (CK_ATTRIBUTE)UnmanagedMemory.Read(tempPointer, typeof(CK_ATTRIBUTE));
+                    attrs[i] = UnmanagedMemory.Read<CK_ATTRIBUTE>(tempPointer);
                 }
 
                 value = attrs;

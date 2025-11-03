@@ -841,7 +841,7 @@ namespace Net.Pkcs11Interop.LowLevelAPI41
             if ((rv != CKR.CKR_OK) || (functionList == IntPtr.Zero))
                 throw new Pkcs11Exception("C_GetFunctionList", rv);
 
-            CK_FUNCTION_LIST ckFunctionList = (CK_FUNCTION_LIST)UnmanagedMemory.Read(functionList, typeof(CK_FUNCTION_LIST));
+            CK_FUNCTION_LIST ckFunctionList = UnmanagedMemory.Read<CK_FUNCTION_LIST>(functionList);
             Initialize(ckFunctionList);
         }
 
@@ -856,7 +856,7 @@ namespace Net.Pkcs11Interop.LowLevelAPI41
             if ((rv != CKR.CKR_OK) || (functionList == IntPtr.Zero))
                 throw new Pkcs11Exception("C_GetFunctionList", rv);
 
-            CK_FUNCTION_LIST ckFunctionList = (CK_FUNCTION_LIST)UnmanagedMemory.Read(functionList, typeof(CK_FUNCTION_LIST));
+            CK_FUNCTION_LIST ckFunctionList = UnmanagedMemory.Read<CK_FUNCTION_LIST>(functionList);
             Initialize(ckFunctionList);
         }
 
